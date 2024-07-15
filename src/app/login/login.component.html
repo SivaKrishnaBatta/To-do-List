@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h3>To-Do-List</h3>
+    </div>
+    <div class="card-body">
+      <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
+        <div class="mb-3">
+          <label for="fname" class="form-label">Username</label>
+          <input type="text" ngModel class="form-control" id="fname" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile Number</label>
+          <input type="number" ngModel class="form-control" id="mobile" name="mobile" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="submittedForms.length > 0" class="mt-5">
+    <h3>Users Table</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let form of submittedForms; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ form.username }}</td>
+          <td>{{ form.email }}</td>
+          <td>{{ form.mobile }}</td>
+          <td>
+            <button (click)="onEdit(i)" class="btn btn-sm btn-warning me-2">Edit</button>
+            <button (click)="onDelete(i)" class="btn btn-sm btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
